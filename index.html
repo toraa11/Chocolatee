@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Chocolate Day Shiruu ji 🍫</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, #5a2d82, #2b003f);
+  overflow: hidden;
+  color: white;
+}
+
+.page {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+.title {
+  font-size: 3rem;
+  margin-top: 40px;
+  text-shadow: 0 0 10px #fff, 0 0 30px #ff7bff;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff9cff; }
+  to { text-shadow: 0 0 30px #ffffff; }
+}
+
+.text {
+  font-size: 1.4rem;
+  margin: 25px 0;
+}
+
+.btn {
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg, #ff8edb, #a855f7);
+  color: white;
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+.btn:hover {
+  transform: scale(1.08);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.rain span {
+  position: absolute;
+  top: -50px;
+  animation: fall linear infinite;
+  font-size: 26px;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="dil-ka-jo-haal-hai.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="title">Happy Chocolate Day Shiruu ji 🍫🐱</div>
+  <div class="text">
+    Shiruu ji 💜<br>
+    Aaj Chocolate Day hai…<br>
+    Aur ek chhota sa sawaal hai Aapke liye 😌
+  </div>
+  <button class="btn" onclick="go('p2')">Next ➜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="title">Ek Chocolate… Shiruu ji ke Liye 🍫</div>
+  <div class="text">
+    Agar main Aapko chocolate doon…<br>
+    Kya Aap lengi? 🐱💖
+  </div>
+  <button class="btn" onclick="go('p3')">YES 😍</button>
+  <button class="btn" onclick="go('pNo')">NO 🙈</button>
+</div>
+
+<!-- YES PAGE -->
+<div class="page" id="p3">
+  <div class="title">YAYYYY Shiruu ji 🍫💜</div>
+  <div class="text">
+    Mujhe pata tha Aap YES hi bolengi 😌<br>
+    Ab bataiye… kaunsi chocolate? 🐱
+  </div>
+
+  <div class="options">
+    <button class="btn" onclick="go('pSurprise')">Dairy Milk Silk 🟣</button>
+    <button class="btn" onclick="go('pSurprise')">KitKat 🍫</button>
+    <button class="btn" onclick="go('pSurprise')">5 Star ⭐</button>
+    <button class="btn" onclick="go('pSurprise')">Perk 🍫</button>
+    <button class="btn" style="grid-column: span 2" onclick="go('pSurprise')">
+      Golgappe 😋💥
+    </button>
+  </div>
+</div>
+
+<!-- NO PAGE -->
+<div class="page" id="pNo">
+  <div class="title" style="font-size:3.5rem;">NOOOO !!!!! 😭💔</div>
+  <div class="text">
+    Shiruu ji… Aapne NO kyun press kiya? 🐱<br><br>
+    Kya Aapko chocolate pasand nahi? 🥺<br>
+    Ya Aap mujhse nahi lengi? 💔
+  </div>
+  <button class="btn" onclick="go('p2')">Ek Baar Aur Sochiye 😌</button>
+</div>
+
+<!-- SURPRISE PAGE -->
+<div class="page" id="pSurprise">
+  <div class="title">SURPRISE Shiruu ji 🎁🍫</div>
+  <div class="text">
+    Chahe chocolate ho ya golgappe 😋<br>
+    Bas aaj ka din Aapke chehre par smile ke liye 💜🐱
+  </div>
+</div>
+
+<!-- RAIN -->
+<div class="rain" id="rain"></div>
+
+<script>
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+const rain = document.getElementById('rain');
+const items = ['🍫','❤️','🍬','💜'];
+
+setInterval(() => {
+  const span = document.createElement('span');
+  span.innerText = items[Math.floor(Math.random()*items.length)];
+  span.style.left = Math.random()*100 + 'vw';
+  span.style.animationDuration = (3 + Math.random()*3) + 's';
+  rain.appendChild(span);
+  setTimeout(() => span.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
