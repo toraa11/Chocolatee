@@ -84,9 +84,20 @@ body {
 <body>
 
 <!-- MUSIC -->
-<audio autoplay loop>
+<audio id="bgm" loop>
   <source src="dil-ka-jo-haal-hai.mp3" type="audio/mpeg">
 </audio>
+
+<button class="btn" onclick="playMusic()"
+style="position:fixed;bottom:20px;right:20px;z-index:999;">
+Play Music 🎶
+</button>
+
+<script>
+function playMusic() {
+  document.getElementById("bgm").play();
+}
+</script>
 
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
