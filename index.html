@@ -95,9 +95,100 @@ Play Music 🎶
 
 <script>
 function playMusic() {
-  document.getElementById("bgm").play();
+  document.getElementById("bgm").play(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Chocolate Day Shiruu ji 🍫</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, #5a2d82, #2b003f);
+  overflow: hidden;
+  color: white;
 }
-</script>
+
+.page {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+.title {
+  font-size: 3rem;
+  margin-top: 40px;
+  text-shadow: 0 0 10px #fff, 0 0 30px #ff7bff;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff9cff; }
+  to { text-shadow: 0 0 30px #ffffff; }
+}
+
+.text {
+  font-size: 1.4rem;
+  margin: 25px 0;
+}
+
+.btn {
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg, #ff8edb, #a855f7);
+  color: white;
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+.btn:hover {
+  transform: scale(1.08);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.rain span {
+  position: absolute;
+  top: -50px;
+  animation: fall linear infinite;
+  font-size: 26px;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="dil-ka-jo-haal-hai.mp3" type="audio/mpeg">
+</audio>
+
+<button class="btn" id="musicBtn" onclick="playMusic()"
+style="position:fixed;bottom:20px;right:20px;z-index:999;">
+Play Music 🎶
+</button>
 
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
@@ -107,7 +198,7 @@ function playMusic() {
     Aaj Chocolate Day hai…<br>
     Aur ek chhota sa sawaal hai Aapke liye 😌
   </div>
-  <button class="btn" onclick="go('p2')">Next ➜</button>
+  <button class="btn" onclick="go('p2'); playMusic();">Next ➜</button>
 </div>
 
 <!-- PAGE 2 -->
@@ -117,8 +208,8 @@ function playMusic() {
     Agar main Aapko chocolate doon…<br>
     Kya Aap lengi? 🐱💖
   </div>
-  <button class="btn" onclick="go('p3')">YES 😍</button>
-  <button class="btn" onclick="go('pNo')">NO 🙈</button>
+  <button class="btn" onclick="go('p3'); playMusic();">YES 😍</button>
+  <button class="btn" onclick="go('pNo'); playMusic();">NO 🙈</button>
 </div>
 
 <!-- YES PAGE -->
@@ -130,11 +221,11 @@ function playMusic() {
   </div>
 
   <div class="options">
-    <button class="btn" onclick="go('pSurprise')">Dairy Milk Silk 🟣</button>
-    <button class="btn" onclick="go('pSurprise')">KitKat 🍫</button>
-    <button class="btn" onclick="go('pSurprise')">5 Star ⭐</button>
-    <button class="btn" onclick="go('pSurprise')">Perk 🍫</button>
-    <button class="btn" style="grid-column: span 2" onclick="go('pSurprise')">
+    <button class="btn" onclick="go('pSurprise'); playMusic();">Dairy Milk Silk 🟣</button>
+    <button class="btn" onclick="go('pSurprise'); playMusic();">KitKat 🍫</button>
+    <button class="btn" onclick="go('pSurprise'); playMusic();">5 Star ⭐</button>
+    <button class="btn" onclick="go('pSurprise'); playMusic();">Perk 🍫</button>
+    <button class="btn" style="grid-column: span 2" onclick="go('pSurprise'); playMusic();">
       Golgappe 😋💥
     </button>
   </div>
@@ -148,7 +239,7 @@ function playMusic() {
     Kya Aapko chocolate pasand nahi? 🥺<br>
     Ya Aap mujhse nahi lengi? 💔
   </div>
-  <button class="btn" onclick="go('p2')">Ek Baar Aur Sochiye 😌</button>
+  <button class="btn" onclick="go('p2'); playMusic();">Ek Baar Aur Sochiye 😌</button>
 </div>
 
 <!-- SURPRISE PAGE -->
@@ -169,9 +260,9 @@ function go(id) {
   document.getElementById(id).classList.add('active');
 }
 
+// Rain animation
 const rain = document.getElementById('rain');
 const items = ['🍫','❤️','🍬','💜'];
-
 setInterval(() => {
   const span = document.createElement('span');
   span.innerText = items[Math.floor(Math.random()*items.length)];
@@ -180,6 +271,13 @@ setInterval(() => {
   rain.appendChild(span);
   setTimeout(() => span.remove(), 6000);
 }, 300);
+
+// Music functions
+function playMusic() {
+  const music = document.getElementById('bgm');
+  music.play();
+  document.getElementById('musicBtn').style.display = 'none'; // hide button after play
+}
 </script>
 
 </body>
